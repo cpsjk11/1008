@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+
+	<!-- 전체사원 반환하는 SELECT -->
+   <select id="total" resultType="ex3.vo.EmpVO">
+   SELECT * FROM employees
+   </select>
+   
+   <!-- 사원들을 검색하는 SELECT -->
+   <select id="search" parameterType="java.util.Map" resultType="ex3.vo.EmpVO">
+   SELECT * FROM employees
+   WHERE <if test='search == 0'>employee_id = #{text}</if>
+   		 <if test='search == 1'>first_name LIKE '%'||#{text}||'%'</if>
+   		 <if test='search == 2'>job_id = UPPER(#{text})</if>
+   </select>
+</mapper>
+
+
+
+
+
+
